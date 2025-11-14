@@ -52,7 +52,7 @@
         }
         
         .btn:hover {
-            background: var(--secondary);
+            background: var(--accent);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -146,7 +146,7 @@
         }
         
         .nav-menu a:hover {
-            color: var(--secondary);
+            color: var(--accent);
         }
         
         .nav-menu a::after {
@@ -154,7 +154,7 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background: var(--secondary);
+            background: var(--accent);
             bottom: 0;
             left: 0;
             transition: width 0.3s ease;
@@ -505,6 +505,9 @@
         }
         
         /* Quality Section */
+        .quality{
+            background: var(--light);
+        }
         .quality-content {
             display: flex;
             align-items: center;
@@ -534,9 +537,13 @@
             display: block;
         }
         
+        .quality-text p{
+            padding-bottom: 1rem;
+        }
+
         /* Contact Section */
         .contact {
-            background: var(--light);
+            background: var(--background);
         }
         
         .contact-container {
@@ -554,19 +561,24 @@
             margin-bottom: 20px;
         }
         
-        .contact-details {
-            margin-bottom: 30px;
+        .contact-info p{
+            margin-bottom: 50px;
         }
+
         
         .contact-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 15px;
+            
         }
         
+        .contact-item p{
+            margin-bottom: 0%;
+        }
+
         .contact-item i {
             color: var(--primary);
-            margin-right: 15px;
+            margin-right: 1px;
             font-size: 1.2rem;
             margin-top: 5px;
         }
@@ -579,6 +591,16 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
+        .contact-item a{
+            text-decoration: underline;
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover{
+            color: var(--accent);
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
