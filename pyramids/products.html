@@ -6,6 +6,31 @@
     <title>Pyramids Botanicals — All Products</title>
     <link rel="icon" type="img" href="assets/img/icon2.jpg">
     <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- small local styles for category nav + hidden state -->
+    <style>
+        .category-nav {
+            display:flex;
+            gap:10px;
+            justify-content:center;
+            flex-wrap:wrap;
+            margin: 18px 0;
+        }
+        .category-btn {
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.08);
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--text);
+        }
+        .category-btn.active {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+        .product-card.hidden { display: none; }
+    </style>
 </head>
 <body>
     <header>
@@ -35,44 +60,118 @@
                     <a href="index.html#contact" class="btn">Contact to Order</a>
                 </div>
 
+                <!-- Category navigation -->
+                <nav class="category-nav" aria-label="Product categories">
+                    <button class="category-btn active" data-cat="all" aria-pressed="true">All</button>
+                    <button class="category-btn" data-cat="Flowers" aria-pressed="false">Flowers</button>
+                    <button class="category-btn" data-cat="Seeds" aria-pressed="false">Seeds</button>
+                    <button class="category-btn" data-cat="Spices" aria-pressed="false">Spices</button>
+                    <button class="category-btn" data-cat="Herbs" aria-pressed="false">Herbs</button>
+                </nav>
+
                 <div class="products-grid">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="assets/img/herbs.jpg" alt="Herbs">
-                        </div>
+                    <!-- Flowers -->
+                    <div class="product-card" data-category="Flowers">
+                        <div class="product-image"><img src="assets/img/Calendula.jpg" alt="Flowers"></div>
                         <div class="product-content">
-                            <h3>Herbs</h3>
-                            <p>High-quality herbs sourced from sustainable farms.</p>
+                            <h3>Calendula Flowers</h3>
                         </div>
                     </div>
 
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="assets/img/spices.jpg" alt="Spices">
-                        </div>
+                    <div class="product-card" data-category="Flowers">
+                        <div class="product-image"><img src="assets/img/Charmonile.jpg" alt="Flowers"></div>
                         <div class="product-content">
-                            <h3>Spices</h3>
-                            <p>Premium spices for food, extracts and industrial use.</p>
+                            <h3>Chamomile Flowers</h3>
                         </div>
                     </div>
 
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="assets/img/seeds.jpg" alt="Seeds">
-                        </div>
+                    <div class="product-card" data-category="Flowers">
+                        <div class="product-image"><img src="assets/img/Hibiscus.jpg" alt="Flowers"></div>
                         <div class="product-content">
-                            <h3>Seeds</h3>
-                            <p>Clean, properly processed seeds for various applications.</p>
+                            <h3>Hibiscus Flowers</h3>
                         </div>
                     </div>
 
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="assets/img/flowers.jpg" alt="Flowers">
-                        </div>
+                    <div class="product-card" data-category="Flowers">
+                        <div class="product-image"><img src="assets/img/Rose-Buds.jpg" alt="Flowers"></div>
                         <div class="product-content">
-                            <h3>Flowers</h3>
-                            <p>Fresh and dried flowers for extracts and fragrances.</p>
+                            <h3>Rose Buds Flowers</h3>
+                        </div>
+                    </div>
+
+                    <!-- Seeds -->
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Fenugreek-seeds.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Fenugreek Seeds</h3>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Fennel-Seeds.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Fennel Seeds</h3>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Nigella-seeds.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Nigella Seeds</h3>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Natural-Sesame-seeds.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Natural Sesame Seeds</h3>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- Spices -->
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Coriander-seeds.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Coriander Seeds</h3>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Cumin-seeds.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Cumin Seeds</h3>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Crawy-seeds.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Crawy Seeds</h3>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Anise-seeds.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Anise Seeds</h3>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Bay-Leaves.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Bay Leaves</h3>
+                        </div>
+                    </div>
+
+                    <!-- Herbs -->
+
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/Spearmint-cut.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Spearmint</h3>
                         </div>
                     </div>
 
@@ -89,6 +188,43 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // simple client-side filter for categories
+        (function () {
+            const btns = Array.from(document.querySelectorAll('.category-btn'));
+            const cards = Array.from(document.querySelectorAll('.product-card'));
+
+            function showCategory(cat) {
+                btns.forEach(b => {
+                    const isActive = b.dataset.cat === cat;
+                    b.classList.toggle('active', isActive);
+                    b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                });
+
+                if (cat === 'all') {
+                    cards.forEach(c => c.classList.remove('hidden'));
+                    return;
+                }
+                cards.forEach(c => {
+                    const matches = (c.dataset.category || '').toLowerCase() === cat.toLowerCase();
+                    c.classList.toggle('hidden', !matches);
+                });
+            }
+
+            btns.forEach(b => {
+                b.addEventListener('click', () => showCategory(b.dataset.cat));
+            });
+
+            // read optional ?category= param to pre-filter
+            const params = new URLSearchParams(location.search);
+            const pre = params.get('category');
+            if (pre) {
+                const matchBtn = btns.find(b => b.dataset.cat.toLowerCase() === pre.toLowerCase());
+                if (matchBtn) matchBtn.click();
+            }
+        })();
+    </script>
 
     <script src="assets/js/script.js"></script>
 </body>

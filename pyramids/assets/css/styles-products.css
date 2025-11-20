@@ -1,0 +1,99 @@
+/* Make product images larger and product text smaller (add near other product rules) */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--white);
+}
+
+/* Larger image area */
+.product-image {
+    width: 100%;
+    height: clamp(220px, 28vh, 360px); /* responsive image height */
+    flex: 0 0 auto;
+}
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Compact product content */
+.product-content {
+    padding: 10px 12px;
+    font-size: 0.92rem;
+    color: var(--text);
+}
+.product-content h3 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+}
+.product-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Small-screen tweaks */
+@media (max-width: 480px) {
+    .product-image { height: 180px; }
+    .product-content { padding: 8px; font-size: 0.88rem; }
+}
+```// filepath: d:\programming\python\web_app_mohamed\pyramids\assets\css\styles.css
+/* Make product images larger and product text smaller (add near other product rules) */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--white);
+}
+
+/* Larger image area */
+.product-image {
+    width: 100%;
+    height: clamp(220px, 28vh, 360px); /* responsive image height */
+    flex: 0 0 auto;
+}
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Compact product content */
+.product-content {
+    padding: 10px 12px;
+    font-size: 0.92rem;
+    color: var(--text);
+}
+.product-content h3 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+}
+.product-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Small-screen tweaks */
+@media (max-width: 480px) {
+    .product-image { height: 180px; }
+    .product-content { padding: 8px; font-size: 0.88rem; }
+}

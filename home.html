@@ -1,926 +1,195 @@
+<!-- ...existing code... -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herms-Farma | Pharmaceutical Excellence</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pyramids Botanicals — All Products</title>
+    <link rel="icon" type="img" href="assets/img/icon2.jpg">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- small local styles for category nav + hidden state -->
     <style>
-        /* Base Styles */
-        :root {
-            --primary: #0056a6;
-            --secondary: #00a8e1;
-            --accent: #ff6b00;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --text: #333333;
-            --white: #ffffff;
+        .category-nav {
+            display:flex;
+            gap:10px;
+            justify-content:center;
+            flex-wrap:wrap;
+            margin: 18px 0;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        ul {
-            list-style: none;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--primary);
-            color: var(--white);
-            border-radius: 4px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        /* Header Styles */
-        header {
+        .category-btn {
             background: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 60px;
-        }
-        
-        .logo-text {
-            margin-left: 10px;
-        }
-        
-        .logo-text h1 {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-        
-        .logo-text p {
-            font-size: 0.9rem;
-            color: var(--secondary);
-        }
-        
-        .nav-menu {
-            display: flex;
-        }
-        
-        .nav-menu li {
-            margin-left: 30px;
-            position: relative;
-        }
-        
-        .nav-menu a {
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 5px 0;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-menu a:hover {
-            color: var(--secondary);
-        }
-        
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-toggle {
-            display: none;
-            font-size: 1.5rem;
+            border: 1px solid rgba(0,0,0,0.08);
+            padding: 8px 14px;
+            border-radius: 6px;
             cursor: pointer;
+            color: var(--text);
         }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 86, 166, 0.8), rgba(0, 168, 225, 0.8)), url('https://images.unsplash.com/photo-1585435557343-3b092031d5ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            color: var(--white);
-            text-align: center;
-            margin-top: 90px;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        
-        /* About Section */
-        .about {
-            background: var(--light);
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .about-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-text h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-        }
-        
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .service-icon {
-            background: var(--primary);
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .service-icon i {
-            font-size: 2.5rem;
-            color: var(--white);
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        /* Products Section */
-        .products {
-            background: var(--light);
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .product-card {
-            background: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .product-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .product-card:hover .product-image img {
-            transform: scale(1.1);
-        }
-        
-        .product-content {
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .product-content h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        /* Quality Section */
-        .quality-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .quality-text {
-            flex: 1;
-        }
-        
-        .quality-text h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .quality-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .quality-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Contact Section */
-        .contact {
-            background: var(--light);
-        }
-        
-        .contact-container {
-            display: flex;
-            gap: 50px;
-        }
-        
-        .contact-info {
-            flex: 1;
-        }
-        
-        .contact-info h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .contact-details {
-            margin-bottom: 30px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-        
-        .contact-item i {
-            color: var(--primary);
-            margin-right: 15px;
-            font-size: 1.2rem;
-            margin-top: 5px;
-        }
-        
-        .contact-form {
-            flex: 1;
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: border 0.3s ease;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: var(--white);
-            padding: 60px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--secondary);
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 2px;
+        .category-btn.active {
             background: var(--accent);
-            bottom: 0;
-            left: 0;
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
         }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .about-content, .quality-content {
-                flex-direction: column;
-            }
-            
-            .about-image, .quality-image {
-                order: -1;
-            }
-            
-            .contact-container {
-                flex-direction: column;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 90px;
-                left: -100%;
-                width: 80%;
-                height: calc(100vh - 90px);
-                background: var(--white);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 50px;
-                transition: left 0.3s ease;
-                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu li {
-                margin: 15px 0;
-            }
-            
-            .mobile-toggle {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .section {
-                padding: 60px 0;
-            }
-        }
+        .product-card.hidden { display: none; }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <div class="logo-img">
-                    <!-- Placeholder for logo -->
-                    <div style="width: 60px; height: 60px; background: var(--primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border-radius: 5px;">HF</div>
-                </div>
-                <div class="logo-text">
-                    <h1>HERMS-FARMA</h1>
-                    <p>Pharmaceutical Excellence</p>
-                </div>
+                <a href="index.html" class="logo-link" aria-label="Go to Home">
+                    <img src="assets/img/cb952c1f-f1fa-4cdc-a2e5-53bdd07e0fcb.jpg" alt="Pyramids Botanicals" class="logo-img">
+                </a>
             </div>
-            
-            <div class="mobile-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            
             <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#quality">Quality</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="index.html#quality">Quality</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Innovative Pharmaceutical Solutions</h1>
-                <p>Committed to improving health and well-being through high-quality pharmaceutical products and services.</p>
-                <a href="#about" class="btn">Learn More</a>
-            </div>
-        </div>
-    </section>
+    <main>
+        <section class="section products-page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>All Products</h2>
+                    <p>Browse our full product catalogue.</p>
+                    <a href="index.html#contact" class="btn">Contact to Order</a>
+                </div>
 
-    <!-- About Section -->
-    <section class="section about" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Us</h2>
-                <p>Learn about our mission and values</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Leading Pharmaceutical Company</h3>
-                    <p>Herms-Farma is a trusted name in the pharmaceutical industry, dedicated to developing, manufacturing, and distributing high-quality medicines that meet the evolving healthcare needs of our community.</p>
-                    <p>With years of experience and a team of dedicated professionals, we strive to make a positive impact on global health through innovation, research, and ethical practices.</p>
-                    <p>Our commitment to excellence extends across all aspects of our operations, from research and development to manufacturing and distribution.</p>
-                    <a href="#contact" class="btn">Contact Us</a>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pharmaceutical Laboratory">
-                </div>
-            </div>
-        </div>
-    </section>
+                <!-- Category navigation -->
+                <nav class="category-nav" aria-label="Product categories">
+                    <button class="category-btn active" data-cat="all" aria-pressed="true">All</button>
+                    <button class="category-btn" data-cat="Flowers" aria-pressed="false">Flowers</button>
+                    <button class="category-btn" data-cat="Seeds" aria-pressed="false">Seeds</button>
+                    <button class="category-btn" data-cat="Spices" aria-pressed="false">Spices</button>
+                    <button class="category-btn" data-cat="Herbs" aria-pressed="false">Herbs</button>
+                </nav>
 
-    <!-- Services Section -->
-    <section class="section services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Services</h2>
-                <p>Comprehensive pharmaceutical solutions</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-pills"></i>
+                <div class="products-grid">
+                    <!-- Flowers -->
+                    <div class="product-card" data-category="Flowers">
+                        <div class="product-image"><img src="assets/img/flowers.jpg" alt="Flowers"></div>
+                        <div class="product-content">
+                            <h3>Lavender Flowers</h3>
+                            <p>High‑quality lavender for aromatherapy and extracts.</p>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <h3>Drug Development</h3>
-                        <p>Research and development of innovative pharmaceutical formulations to address unmet medical needs.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Manufacturing</h3>
-                        <p>State-of-the-art manufacturing facilities following strict quality control standards and regulatory compliance.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Distribution</h3>
-                        <p>Efficient and reliable distribution network ensuring timely delivery of pharmaceutical products.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Products Section -->
-    <section class="section products" id="products">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Products</h2>
-                <p>Quality medicines for better health</p>
-            </div>
-            
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cardiovascular Medicine">
+                    <div class="product-card" data-category="Flowers">
+                        <div class="product-image"><img src="assets/img/flowers-2.jpg" alt="Flowers"></div>
+                        <div class="product-content">
+                            <h3>Chamomile Flowers</h3>
+                            <p>Organic chamomile for teas and soothing extracts.</p>
+                        </div>
                     </div>
-                    <div class="product-content">
-                        <h3>Cardiovascular</h3>
-                        <p>Medications for heart and circulatory system conditions.</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Antibiotics">
-                    </div>
-                    <div class="product-content">
-                        <h3>Antibiotics</h3>
-                        <p>Broad-spectrum antibiotics for various bacterial infections.</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1576671414121-aa0fba6d7b5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pain Management">
-                    </div>
-                    <div class="product-content">
-                        <h3>Pain Management</h3>
-                        <p>Effective solutions for acute and chronic pain conditions.</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1585435557343-3b092031d5ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vitamins and Supplements">
-                    </div>
-                    <div class="product-content">
-                        <h3>Vitamins & Supplements</h3>
-                        <p>Essential nutrients to support overall health and wellness.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Quality Section -->
-    <section class="section quality" id="quality">
-        <div class="container">
-            <div class="section-title">
-                <h2>Quality Assurance</h2>
-                <p>Commitment to excellence in every product</p>
-            </div>
-            
-            <div class="quality-content">
-                <div class="quality-text">
-                    <h3>Highest Standards in Pharmaceutical Manufacturing</h3>
-                    <p>At Herms-Farma, quality is at the core of everything we do. We adhere to strict international standards and regulatory requirements to ensure the safety, efficacy, and quality of our products.</p>
-                    <p>Our state-of-the-art manufacturing facilities are equipped with advanced technology and operated by highly trained professionals who follow rigorous quality control procedures at every stage of production.</p>
-                    <p>We continuously invest in research and development to improve our processes and deliver innovative solutions that meet the evolving needs of healthcare professionals and patients.</p>
-                    <a href="#contact" class="btn">Learn More</a>
-                </div>
-                <div class="quality-image">
-                    <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Quality Control Laboratory">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Get in touch with our team</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <p>We're here to answer any questions you may have about our products and services. Reach out to us and we'll respond as soon as we can.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Address</h4>
-                                <p>123 Pharma Street, Medical District, City, Country 12345</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>+1 (555) 123-4567</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>info@herms-farma.com</p>
-                            </div>
+                    <!-- Seeds -->
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/seeds.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Fenugreek Seeds</h3>
+                            <p>Clean, processed seeds for culinary and extract use.</p>
                         </div>
                     </div>
-                    
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+
+                    <div class="product-card" data-category="Seeds">
+                        <div class="product-image"><img src="assets/img/seeds-2.jpg" alt="Seeds"></div>
+                        <div class="product-content">
+                            <h3>Fennel Seeds</h3>
+                            <p>Premium fennel with consistent moisture and aroma.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" class="form-control" required>
+
+                    <!-- Spices -->
+                    <div class="product-card" data-category="Spices">
+                        <div class="product-image"><img src="assets/img/spices.jpg" alt="Spices"></div>
+                        <div class="product-content">
+                            <h3>Cinnamon Bark</h3>
+                            <p>Whole cinnamon bark, graded for oil extraction.</p>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                    </div>
+
+                    <div class="product-card" data-category="Spices">
+                        <div class="product-image"><img src="assets/img/spices-2.jpg" alt="Spices"></div>
+                        <div class="product-content">
+                            <h3>Black Pepper</h3>
+                            <p>High‑pungency peppercorns, cleaned and sorted.</p>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
+                    </div>
+
+                    <!-- Herbs -->
+                    <div class="product-card" data-category="Herbs">
+                        <div class="product-image"><img src="assets/img/herbs.jpg" alt="Herbs"></div>
+                        <div class="product-content">
+                            <h3>Mint Leaves</h3>
+                            <p>Fresh-dried mint for infusion and flavoring.</p>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                    </div>
+
+                    <div class="product-card" data-category="Herbs">
+                        <div class="product-image"><img src="assets/img/herbs-2.jpg" alt="Herbs"></div>
+                        <div class="product-content">
+                            <h3>Rosemary</h3>
+                            <p>Fragrant rosemary for essential oils and culinary use.</p>
                         </div>
-                        
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
+                    </div>
+
+                    <!-- add more product-card blocks here as needed -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>HERMS-FARMA</h3>
-                    <p>Committed to improving health and well-being through high-quality pharmaceutical products and services.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#quality">Quality</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Our Products</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Cardiovascular</a></li>
-                        <li><a href="#">Antibiotics</a></li>
-                        <li><a href="#">Pain Management</a></li>
-                        <li><a href="#">Vitamins & Supplements</a></li>
-                        <li><a href="#">Diabetes Care</a></li>
-                        <li><a href="#">Respiratory</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Pharma Street, Medical District</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@herms-farma.com</li>
-                    </ul>
-                </div>
-            </div>
-            
             <div class="copyright">
-                <p>&copy; 2023 Herms-Farma. All Rights Reserved.</p>
+                <p>&copy; 2025 Pyramids Botanicals. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-menu').classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelector('.nav-menu').classList.remove('active');
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 90,
-                        behavior: 'smooth'
-                    });
+        // simple client-side filter for categories
+        (function () {
+            const btns = Array.from(document.querySelectorAll('.category-btn'));
+            const cards = Array.from(document.querySelectorAll('.product-card'));
+
+            function showCategory(cat) {
+                btns.forEach(b => {
+                    const isActive = b.dataset.cat === cat;
+                    b.classList.toggle('active', isActive);
+                    b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                });
+
+                if (cat === 'all') {
+                    cards.forEach(c => c.classList.remove('hidden'));
+                    return;
                 }
+                cards.forEach(c => {
+                    const matches = (c.dataset.category || '').toLowerCase() === cat.toLowerCase();
+                    c.classList.toggle('hidden', !matches);
+                });
+            }
+
+            btns.forEach(b => {
+                b.addEventListener('click', () => showCategory(b.dataset.cat));
             });
-        });
+
+            // read optional ?category= param to pre-filter
+            const params = new URLSearchParams(location.search);
+            const pre = params.get('category');
+            if (pre) {
+                const matchBtn = btns.find(b => b.dataset.cat.toLowerCase() === pre.toLowerCase());
+                if (matchBtn) matchBtn.click();
+            }
+        })();
     </script>
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
