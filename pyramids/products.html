@@ -7,30 +7,7 @@
     <link rel="icon" type="img" href="assets/img/icon2.jpg">
     <link rel="stylesheet" href="assets/css/styles.css">
 
-    <!-- small local styles for category nav + hidden state -->
-    <style>
-        .category-nav {
-            display:flex;
-            gap:10px;
-            justify-content:center;
-            flex-wrap:wrap;
-            margin: 18px 0;
-        }
-        .category-btn {
-            background: var(--white);
-            border: 1px solid rgba(0,0,0,0.08);
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            color: var(--text);
-        }
-        .category-btn.active {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-        }
-        .product-card.hidden { display: none; }
-    </style>
+
 </head>
 <body>
     <header>
@@ -188,44 +165,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // simple client-side filter for categories
-        (function () {
-            const btns = Array.from(document.querySelectorAll('.category-btn'));
-            const cards = Array.from(document.querySelectorAll('.product-card'));
-
-            function showCategory(cat) {
-                btns.forEach(b => {
-                    const isActive = b.dataset.cat === cat;
-                    b.classList.toggle('active', isActive);
-                    b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-                });
-
-                if (cat === 'all') {
-                    cards.forEach(c => c.classList.remove('hidden'));
-                    return;
-                }
-                cards.forEach(c => {
-                    const matches = (c.dataset.category || '').toLowerCase() === cat.toLowerCase();
-                    c.classList.toggle('hidden', !matches);
-                });
-            }
-
-            btns.forEach(b => {
-                b.addEventListener('click', () => showCategory(b.dataset.cat));
-            });
-
-            // read optional ?category= param to pre-filter
-            const params = new URLSearchParams(location.search);
-            const pre = params.get('category');
-            if (pre) {
-                const matchBtn = btns.find(b => b.dataset.cat.toLowerCase() === pre.toLowerCase());
-                if (matchBtn) matchBtn.click();
-            }
-        })();
-    </script>
-
     <script src="assets/js/script.js"></script>
 </body>
 </html>
